@@ -1,4 +1,16 @@
 #Author: Diane Tam Ben Cheung
+
+import re
+tags = []
+
+f = open('tweetstream.txt', 'r')
+for line in f:
+	# find the hashtags via regex...not sure how to do this using twitter api??
+	ht = re.findall(r"#(\w+)", line)
+	for h in ht:
+		tags.append(h.lower())
+print len(tags)
+
 #k is number of buckets
 #m is the stream itself
 def main(k, m):
@@ -38,12 +50,14 @@ def main(k, m):
 					if counter[c]==0:
 						#remove value	
 						itemlist[c] = None
-
+	print counter
 	return itemlist
 
 #testing
-print main(2, [1,2,2,3,3,1,1,1,3])
-print main(1, [2,3,4,4,1,7])
-print main(1, [1,2,2,3,3,1,1,1,3])
+# print main(2, [1,2,2,3,3,1,1,1,3])
+# print main(1, [2,3,4,4,1,7])
+# print main(1, [1,2,2,3,3,1,1,1,3])
 
+# print main(500, tags)
+print main(100, tags)
 

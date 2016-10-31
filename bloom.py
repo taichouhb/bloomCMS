@@ -36,7 +36,7 @@ def getRandPrime(p, q):
 
 def main():
 	hashs = []
-	w = 400000/24
+	w = 3200000
 	for i in range(w):
 		hashs.append(0)
 
@@ -49,7 +49,7 @@ def main():
 	previousPrime = 2
 	real = []
 
-	for i in range(33,126):
+	for i in range(33,127):
 		nexts = nextPrime(previousPrime)
 		library[chr(i).decode('utf-8')] = nexts
 		previousPrime = nexts
@@ -59,7 +59,9 @@ def main():
 		p.append(prime) # stream size, uppper bound
 		a.append(random.randint(0, prime - 1))
 		b.append(random.randint(1, prime - 1))
-
+	print a 
+	print b
+	print p
 	# preprocessing of dictionary file
 	for word in open("./dict", "r"):
 		real.append(word)
@@ -77,20 +79,35 @@ def main():
 				s=1
 
 		#hash the product
-		for ha in range(0,len(a)-1): #loop through each hash function
+		for ha in range(0,len(a)): #loop through each hash function
 			hashs[((((a[ha]+b[ha]*product))% p[ha]) % w)] = 1
 
-	print hashs
+	# print hashs
 	#generate 100 random 5-letter strings
-	strings = []
-	for s in range(0, 100):
-		word = ""
-		for i in range(0,5):
-			num = random.randint(65,122)
-			word = word + chr(num)
-		strings.append(word)
+	# strings = []
+	# for s in range(0, 100):
+	# 	word = ""
+	# 	for i in range(0,5):
+	# 		num = random.randint(65,122)
+	# 		word = word + chr(num)
+	# 	strings.append(word)
 
-	#treu or false array for hashing strings
+	strings = []
+	strings.append("hello")
+	strings.append("these")
+	strings.append("are")
+	strings.append("real")
+	strings.append("words")
+	strings.append("zzz")
+	strings.append("balloon")
+	strings.append("food")
+	strings.append("keyboard")
+	strings.append("computer")
+	strings.append("room")
+	strings.append("book")
+	strings.append("awsedrftgyhujidrtyfgjgseg")
+
+	#true or false array for hashing strings
 	resultOfHash = []
 
 	for word in strings:
@@ -106,7 +123,7 @@ def main():
 				#print "Skipping this illegal character"
 				s=1
 		falseInstance = True
-		for ha in range(0, len(a)-1):
+		for ha in range(0, len(a)):
 			if hashs[((((a[ha]+b[ha]*product))% p[ha]) % w)] == 0:
 				if falseInstance == True:
 					resultOfHash.append(False)
