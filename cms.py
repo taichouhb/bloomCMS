@@ -37,13 +37,13 @@ def getRandPrime(p, q):
 def main():
 	tags = []
 
-	f = open('tweetstream.txt', 'r')
-	for line in f:
-		# find the hashtags via regex...not sure how to do this using twitter api??
-		ht = re.findall(r"#(\w+)", line)
-		for h in ht:
-			tags.append(h.lower())
-	#print tags
+	with open('tweetstream.txt', 'r') as f:
+		for line in f:
+			# find the hashtags via regex...not sure how to do this using twitter api??
+			ht = re.findall(r"#(\w+)", line)
+			for h in ht:
+				tags.append(h.lower())
+		#print tags
 
 	#map ascii letters to unique prime numbers
 	previousPrime = 2
@@ -58,7 +58,7 @@ def main():
 	p = []
 
 	for x in range(0, 6): # num hash functions
-		prime = getRandPrime(len(tags), 99999999)
+		prime = getRandPrime(len(tags), 999999999)
 		p.append(prime) # stream size, uppper bound
 		a.append(random.randint(0, prime - 1))
 		b.append(random.randint(1, prime - 1))
@@ -71,7 +71,7 @@ def main():
 	h6 = []
 
 	# w = int(2.72*5600000000 )
-	w = 5000000
+	w = int(2.72/0.001)
 	for i in range(0, w):
 		h1.append(0)
 		h2.append(0)
@@ -114,12 +114,13 @@ def main():
 
 		item += 1
 		freq[item] = min(v1, v2, v3, v4, v5, v6)
-		# print freq[item]
+
 	result = []
 	for i in range(0, len(freq)):
 		if freq[i] > 0.002*len(tags):
 			if tags[i] not in result:
 				result.append(tags[i])
+	print freq
 	print result
 main()
 

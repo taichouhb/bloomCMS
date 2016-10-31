@@ -1,4 +1,6 @@
 import random
+from bitarray import bitarray
+# need a sudo pip install bitarray
 
 # declare hash and initialize all bits to 0
 
@@ -35,10 +37,9 @@ def getRandPrime(p, q):
 	return n
 
 def main():
-	hashs = []
 	w = 3200000
-	for i in range(w):
-		hashs.append(0)
+	hashs = bitarray(w)
+	hashs.setall(0)
 
 	# generate random hash family
 	a = []
@@ -55,7 +56,7 @@ def main():
 		previousPrime = nexts
 
 	for x in range(0, 5): # num hash functions
-		prime = getRandPrime(330000, 9999999)
+		prime = getRandPrime(340000, 9999999)
 		p.append(prime) # stream size, uppper bound
 		a.append(random.randint(0, prime - 1))
 		b.append(random.randint(1, prime - 1))
@@ -82,7 +83,7 @@ def main():
 		for ha in range(0,len(a)): #loop through each hash function
 			hashs[((((a[ha]+b[ha]*product))% p[ha]) % w)] = 1
 
-	# print hashs
+	print hashs
 	#generate 100 random 5-letter strings
 	# strings = []
 	# for s in range(0, 100):
@@ -109,8 +110,7 @@ def main():
 
 	#true or false array for hashing strings
 	resultOfHash = []
-
-	for word in strings:
+	def checkWord(word):
 		product = 1 
 		for c in word:
 			try: 
@@ -122,15 +122,13 @@ def main():
 			except UnicodeDecodeError:
 				#print "Skipping this illegal character"
 				s=1
-		falseInstance = True
 		for ha in range(0, len(a)):
 			if hashs[((((a[ha]+b[ha]*product))% p[ha]) % w)] == 0:
-				if falseInstance == True:
-					resultOfHash.append(False)
-					falseInstance = False
-		if falseInstance == True:
-			resultOfHash.append(True)
+				return False
+			return True
 
+	for word in strings:
+		resultOfHash.append(checkWord(word))
 
 
 	print resultOfHash
