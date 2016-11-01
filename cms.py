@@ -80,11 +80,15 @@ def main():
 		h5.append(0)
 		h6.append(0)
 		
+	previousPrime2 = 2
+	tagPrime = dict()
 	for t in tags:
 		#get the unique prime value from string
-		product = 1
-		for c in t:
-			product = product * library[ord(c)]
+		product = 0
+		currentPrime = nextPrime(previousPrime2)
+		tagPrime[t] = currentPrime
+		for c in range(0, len(t)):
+			product += library[ord(t[c])]*currentPrime**c 
 		#for each hash function, hash the value
 
 		h1[((((a[0]+b[0]*product))% p[0])%w)] += 1
@@ -100,9 +104,9 @@ def main():
 	item = 0
 	for t in tags:
 		#get the unique prime value from string
-		product = 1
-		for c in t:
-			product = product * library[ord(c)]
+		product = 0
+		for c in range(0, len(t)):
+			product += library[ord(t[c])]*tagPrime[t]**c 
 		#for each hash function, hash the value
 
 		v1 = h1[((((a[0]+b[0]*product))% p[0])%w)]

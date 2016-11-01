@@ -1,5 +1,5 @@
 #Author: Diane Tam Ben Cheung
-
+# 3 A implementation
 import re
 tags = []
 import heapq
@@ -10,7 +10,6 @@ with open('tweetstream.txt', 'r') as f:
 		ht = re.findall(r"#(\w+)", line)
 		for h in ht:
 			tags.append(h.lower())
-	print len(tags)
 
 #k is number of buckets
 #m is the stream itself

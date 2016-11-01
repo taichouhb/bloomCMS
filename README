@@ -1,0 +1,7 @@
+We have submitted 2 bloom files. bloom.py is with our own implementation of random hash functions. But for some reason it doesn't work completely, so we used murmurhash function python library to generate hash function for us, resulting in bloom3.py file. The bloomOutput is from bloom3 and it seems fairly accurate. 
+
+
+To run, just run python XX.py
+(you will need to install bitarray)
+
+Heavyhitter file is the implementation to the algorithm in 3a. The output is listed there. And csm is the implementation to the count min sketch algorithm for 3b. 
