@@ -96,7 +96,7 @@ def main():
 			word = word + chr(num)
 		strings.append(word)
 
-	# strings.append("hello")
+	#strings.append("ohlle")
 	# strings.append("these")
 	# strings.append("are")
 	# strings.append("real")

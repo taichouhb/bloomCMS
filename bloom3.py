@@ -38,14 +38,14 @@ def main():
 	strings.append("are")
 	strings.append("real")
 	strings.append("words")
-	strings.append("zzz")
-	strings.append("balloon")
-	strings.append("food")
-	strings.append("keyboard")
-	strings.append("computer")
-	strings.append("room")
-	strings.append("book")
-	strings.append("awsedrftgyhujidrtyfgjgseg")
+	# strings.append("zzz")
+	# strings.append("balloon")
+	# strings.append("food")
+	# strings.append("keyboard")
+	# strings.append("computer")
+	# strings.append("room")
+	# strings.append("book")
+	# strings.append("awsedrftgyhujidrtyfgjgseg")
 
 	#true or false array for hashing strings
 	resultOfHash = []
@@ -70,12 +70,14 @@ def main():
 		if resultOfHash[s] == True:
 			#check if this is in real
 			if strings[s] not in real:
-				print strings[s] 
+				print "False Positive: " + strings[s] 
 				falsePositive+=1
 			total += 1
 
+	print "Strings: (100 random, and forced true's at the end): " + str(strings)
+	print "Array of True or False for resulting Hash: " + str(resultOfHash)
 	print "Rate of False Positive: " + str(falsePositive/total)
-	print "rate of false pos 2: " + str(falsePositive/(1.00000*len(strings)))
+	#print "rate of false pos 2: " + str(falsePositive/(1.00000*len(strings)))
 
 	#print real
 main()
