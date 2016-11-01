@@ -2,6 +2,7 @@
 
 import re
 tags = []
+import heapq
 
 with open('tweetstream.txt', 'r') as f:
 	for line in f:
@@ -58,7 +59,7 @@ def main(k, m):
 		freqMap[itemlist] = counter
 
 	heap = [(-value, key) for key, value in freqMap.items()] 
-	#largest = heapq.nsmallest(100, heap)
+	largest = heapq.nsmallest(k, heap)
 	largest = [(key, -value) for value, key in largest]
 	print largest
 
