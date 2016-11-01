@@ -3,13 +3,13 @@
 import re
 tags = []
 
-f = open('tweetstream.txt', 'r')
-for line in f:
-	# find the hashtags via regex...not sure how to do this using twitter api??
-	ht = re.findall(r"#(\w+)", line)
-	for h in ht:
-		tags.append(h.lower())
-print len(tags)
+with open('tweetstream.txt', 'r') as f:
+	for line in f:
+		# find the hashtags via regex...not sure how to do this using twitter api??
+		ht = re.findall(r"#(\w+)", line)
+		for h in ht:
+			tags.append(h.lower())
+	print len(tags)
 
 #k is number of buckets
 #m is the stream itself
@@ -50,14 +50,24 @@ def main(k, m):
 					if counter[c]==0:
 						#remove value	
 						itemlist[c] = None
-	print counter
-	return itemlist
+
+	freqMap = {}
+	items_and_freq = zip(itemlist, counter)
+
+	for itemlist, counter in items_and_freq:
+		freqMap[itemlist] = counter
+
+	heap = [(-value, key) for key, value in freqMap.items()] 
+	#largest = heapq.nsmallest(100, heap)
+	largest = [(key, -value) for value, key in largest]
+	print largest
+
 
 #testing
 # print main(2, [1,2,2,3,3,1,1,1,3])
 # print main(1, [2,3,4,4,1,7])
 # print main(1, [1,2,2,3,3,1,1,1,3])
 
-# print main(500, tags)
-print main(100, tags)
+print main(500, tags)
+#print main(100, tags)
 

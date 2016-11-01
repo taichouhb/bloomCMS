@@ -58,7 +58,7 @@ def main():
 		previousPrime = nexts
 
 	#generate hash function numbers into arrays a,b, and p
-	for x in range(0, 5): # num hash functions
+	for x in range(0, 100): # num hash functions
 		prime = getRandPrime(340000, 9999999)
 		p.append(prime) # stream size, uppper bound
 		a.append(random.randint(0, prime - 1))
@@ -101,7 +101,7 @@ def main():
 	# strings.append("are")
 	# strings.append("real")
 	# strings.append("words")
-	# strings.append("zzz")
+	# strings.append("zzzfddddddddddddddssgdfgdgftsedgf")
 	# strings.append("balloon")
 	# strings.append("food")
 	# strings.append("keyboard")
@@ -138,7 +138,7 @@ def main():
 	for word in strings:
 		resultOfHash.append(checkWord(word))
 
-	falsePositive = 0
+	falsePositive = 0.0000000
 	total = 0.0000000
 	#calculate false posistive
 	for s in range(0, len(resultOfHash)):
@@ -149,10 +149,12 @@ def main():
 				falsePositive+=1
 			total += 1
 
+	print resultOfHash
+	print strings
 
 	#print the false positive rate
-	print "Rate of False Positive: " + str(falsePositive/total)
-
+	
+	print "rate of false pos 2: " + str(falsePositive/(1.00000*len(strings)))
 
 
 main()

@@ -112,8 +112,8 @@ def main():
 		v5 = h5[((((a[4]+b[4]*product))% p[4])%w)]
 		v6 = h6[((((a[5]+b[5]*product))% p[5])%w)]
 
-		item += 1
 		freq[item] = min(v1, v2, v3, v4, v5, v6)
+		item += 1
 
 	result = []
 	for i in range(0, len(freq)):

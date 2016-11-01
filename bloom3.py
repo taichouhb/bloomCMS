@@ -33,19 +33,19 @@ def main():
 		strings.append(word)
 
 	# strings = []
-	# strings.append("hello")
-	# strings.append("these")
-	# strings.append("are")
-	# strings.append("real")
-	# strings.append("words")
-	# strings.append("zzz")
-	# strings.append("balloon")
-	# strings.append("food")
-	# strings.append("keyboard")
-	# strings.append("computer")
-	# strings.append("room")
-	# strings.append("book")
-	# strings.append("awsedrftgyhujidrtyfgjgseg")
+	strings.append("hello")
+	strings.append("these")
+	strings.append("are")
+	strings.append("real")
+	strings.append("words")
+	strings.append("zzz")
+	strings.append("balloon")
+	strings.append("food")
+	strings.append("keyboard")
+	strings.append("computer")
+	strings.append("room")
+	strings.append("book")
+	strings.append("awsedrftgyhujidrtyfgjgseg")
 
 	#true or false array for hashing strings
 	resultOfHash = []
@@ -75,6 +75,7 @@ def main():
 			total += 1
 
 	print "Rate of False Positive: " + str(falsePositive/total)
+	print "rate of false pos 2: " + str(falsePositive/(1.00000*len(strings)))
 
 	#print real
 main()
