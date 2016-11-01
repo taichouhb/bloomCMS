@@ -1,6 +1,7 @@
 #Author: Diane Tam Ben Cheung
 import random
 import re
+import heapq
 
 def isprime(n):
     if n == 2:
@@ -36,7 +37,6 @@ def getRandPrime(p, q):
 
 def main():
 	tags = []
-
 	with open('tweetstream.txt', 'r') as f:
 		for line in f:
 			# find the hashtags via regex...not sure how to do this using twitter api??
@@ -120,8 +120,24 @@ def main():
 		if freq[i] > 0.002*len(tags):
 			if tags[i] not in result:
 				result.append(tags[i])
-	print freq
-	print result
+
+	# print freq
+	# print result
+
+	freqMap = {}
+	tags_and_freq = zip(tags, freq)
+	# for f in range(0, len(freq)):
+	# 	freqMap[tags[f]] = freq[f]
+
+	# print tags_and_freq
+	for tags, freq in tags_and_freq:
+		freqMap[tags] = freq
+	# print freqMap
+	heap = [(-value, key) for key, value in freqMap.items()] 
+	largest = heapq.nsmallest(100, heap)
+	largest = [(key, -value) for value, key in largest]
+	print largest
+
 main()
 
 
